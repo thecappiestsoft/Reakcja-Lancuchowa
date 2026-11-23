@@ -1,0 +1,8 @@
+/* Mikrogra: sort */
+ENGINES.sort={get verb(){return L('POSORTUJ!','SORT!')},base:7800,pool:()=>SORT,make(it){const q=shuffle([...shuffle(it.A).slice(0,2).map(v=>({v,s:'a'})),...shuffle(it.B).slice(0,2).map(v=>({v,s:'b'}))]);let miss=null;
+    return{ins:L(`${it.a} czy ${it.b.toLowerCase()}? Wrzuć 4 karty.`,`${it.a} or ${it.b.toLowerCase()}? Sort 4 cards.`),get note(){return miss?`<b>${fmt(miss.v)}</b> → ${miss.s==='a'?it.a:it.b}`:L('Zabrakło czasu na posortowanie wszystkich kart.','Time ran out before all the cards were sorted.')},
+      get review(){return miss?`${plain(miss.v)} → ${miss.s==='a'?it.a:it.b}`:`${it.a} / ${it.b}`},
+      render(el,api){el.innerHTML=`<div class="prompt"><small>${catName(it.c)}</small>${L('Posortuj!','Sort!')}</div><div class="sort"><button type="button" class="bin a">${it.a}<span class="k">←</span></button><div class="mid"><div class="card"></div><div class="dots">${q.map(()=>'<i></i>').join('')}</div></div><button type="button" class="bin b">${it.b}<span class="k">→</span></button></div>`;
+        let i=0;const card=el.querySelector('.card'),dots=el.querySelectorAll('.dots i');const show=()=>{card.style.animation='none';card.offsetHeight;card.style.animation='';card.innerHTML=fmt(q[i].v)};show();
+        const put=s=>{if(i>=q.length)return;if(q[i].s!==s){miss=q[i];api.done(false);return}sTap();dots[i].classList.add('on');i++;if(i===q.length)api.done(true);else show()};
+        el.querySelector('.bin.a').onclick=()=>put('a');el.querySelector('.bin.b').onclick=()=>put('b');api.onKey=k=>{if(k==='ArrowLeft')put('a');if(k==='ArrowRight')put('b')}}}}};

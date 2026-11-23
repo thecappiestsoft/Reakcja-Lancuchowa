@@ -1,0 +1,39 @@
+/* Layout: bold "litmus paper" arcade. Light: yellow halftone desk. Dark ("Kawa"): warm coffee desk, quiet outlines, soft shadows. The ink game stage stays the same in both. */
+:root{
+  --sun:#FFD23F; --sun-2:#FFE680; --ink:#1B1433; --ink-2:#2C2454; --ink-3:#3D3470;
+  --paper:#FFFDF4; --muted:#5A5175; --litmus:#FF3D7F; --base:#2F5BFF; --leaf:#12A874; --warn:#FF8A1F;
+  /* desk (outside the stage), themeable */
+  --bg:#FFD23F; --dot:rgba(27,20,51,.10); --fg:#1B1433; --edge:#1B1433; --shadow:#1B1433; --surface:#FFFDF4;
+  --inv-bg:#1B1433; --inv-fg:#FFD23F; --inv-sub:#FFE680; --inv-accent:#FFD23F; --input-bg:#FFFFFF; --tint:#FFE680;
+  --real-bg:#E3F6EC; --real-fg:#1D3B2E; --review-bg:#FFF3F7; --stage-shadow:rgba(27,20,51,.85); --stage-muted:#5A5175;
+  --stage-bg:#1B1433; --fuse-bg:#2C2454; --overlay:rgba(18,13,36,.92); --card:#FFFDF4;
+  --intro-bg:#FFD23F; --intro-fg:#1B1433; --intro-verb:#1B1433; --intro-shadow:#FF3D7F; --intro-ray:rgba(255,61,127,.16);
+  --o1:#FFE07A; --o2:#9FD6FF; --o3:#FFB3CB; --o4:#A9F0C9; --o5:#C9B8FF; --o6:#E8E2D2; --o7:#DCEBFF;
+  --f-display:'Bricolage Grotesque','Arial Black',system-ui,sans-serif;
+  --f-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme: light;
+}
+/* dark: "Kawa" – warm coffee browns, low blue light */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1E1915; --dot:rgba(239,230,216,.035); --fg:#ECE3D4; --edge:#463B31; --shadow:rgba(0,0,0,.5); --surface:#29221D; --muted:#B0A090;
+  --inv-bg:#D9A55B; --inv-fg:#1E1915; --inv-sub:#5A4B3E; --inv-accent:#8E3B2A; --input-bg:#221C17; --tint:#342B24;
+  --real-bg:#25302A; --real-fg:#CFE3D2; --review-bg:#352321; --stage-shadow:rgba(0,0,0,.5);
+  --stage-bg:#16120F; --fuse-bg:#221C17; --overlay:rgba(22,18,15,.92); --card:#E6DCCA;
+  --intro-bg:#29221D; --intro-fg:#ECE3D4; --intro-verb:#D9A55B; --intro-shadow:rgba(0,0,0,.45); --intro-ray:rgba(255,255,255,.035);
+  --o1:#D8BE7E; --o2:#9CB3C2; --o3:#CFA0A0; --o4:#A5C2A0; --o5:#B5A6C4; --o6:#CDC3B3; --o7:#B9C6CE; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1E1915; --dot:rgba(239,230,216,.035); --fg:#ECE3D4; --edge:#463B31; --shadow:rgba(0,0,0,.5); --surface:#29221D; --muted:#B0A090;
+  --inv-bg:#D9A55B; --inv-fg:#1E1915; --inv-sub:#5A4B3E; --inv-accent:#8E3B2A; --input-bg:#221C17; --tint:#342B24;
+  --real-bg:#25302A; --real-fg:#CFE3D2; --review-bg:#352321; --stage-shadow:rgba(0,0,0,.5);
+  --stage-bg:#16120F; --fuse-bg:#221C17; --overlay:rgba(22,18,15,.92); --card:#E6DCCA;
+  --intro-bg:#29221D; --intro-fg:#ECE3D4; --intro-verb:#D9A55B; --intro-shadow:rgba(0,0,0,.45); --intro-ray:rgba(255,255,255,.035);
+  --o1:#D8BE7E; --o2:#9CB3C2; --o3:#CFA0A0; --o4:#A5C2A0; --o5:#B5A6C4; --o6:#CDC3B3; --o7:#B9C6CE; color-scheme:dark}
+html,body{background:var(--bg);color:var(--fg);transition:background-color .2s}
+body{font-family:var(--f-body);font-size:16px;line-height:1.45;
+  background-image:radial-gradient(var(--dot) 1.2px,transparent 1.5px);background-size:14px 14px}
+sub,sup{font-size:.68em;line-height:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--base);outline-offset:3px}
+.app{max-width:980px;margin:0 auto;padding-block:18px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}

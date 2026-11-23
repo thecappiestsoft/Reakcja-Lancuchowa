@@ -1,0 +1,28 @@
+/* ---------- stage ---------- */
+.stage{position:relative;height:clamp(460px,70vh,620px);background:var(--stage-bg);color:var(--paper);border:4px solid var(--edge);border-radius:26px;box-shadow:8px 8px 0 var(--stage-shadow);overflow:hidden;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px}
+.play{position:absolute;inset:0 0 26px 0;display:flex;flex-direction:column;overflow:auto}
+.prompt{padding:16px 18px 6px;font-family:var(--f-display);font-weight:800;font-size:clamp(19px,3.4vw,28px);line-height:1.15;text-wrap:balance;letter-spacing:-.01em}
+.prompt small{display:block;font-family:var(--f-body);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);margin-bottom:4px}
+.fuse{position:absolute;left:0;right:0;bottom:0;height:26px;background:var(--fuse-bg);border-top:3px solid #000}
+.fuse i{position:absolute;left:0;top:0;bottom:0;background:repeating-linear-gradient(-45deg,var(--sun) 0 10px,var(--warn) 10px 20px);width:100%}
+.fuse i::after{content:"";position:absolute;right:-9px;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:radial-gradient(circle,#fff 0 25%,var(--sun) 40%,var(--litmus) 70%,transparent 72%);box-shadow:0 0 14px var(--sun)}
+.fuse.hurry i{background:repeating-linear-gradient(-45deg,var(--litmus) 0 10px,var(--warn) 10px 20px)}
+
+/* overlays */
+.ov{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;z-index:5}
+.intro{background:var(--intro-bg);color:var(--intro-fg);background-image:repeating-conic-gradient(from 0deg at 50% 55%,var(--intro-ray) 0 10deg,transparent 10deg 20deg)}
+.intro .who{display:inline-block;font-weight:900;padding:4px 14px;border-radius:999px;border:3px solid var(--ink);background:var(--card);color:var(--ink);margin-bottom:10px}
+.intro .verb{font-family:var(--f-display);font-weight:800;font-size:clamp(54px,13vw,128px);line-height:.9;letter-spacing:-.04em;color:var(--intro-verb);text-shadow:5px 5px 0 var(--intro-shadow);animation:pop .45s cubic-bezier(.2,1.6,.4,1) both;transform:rotate(-3deg)}
+.intro .ins{margin-top:14px;font-weight:900;font-size:clamp(16px,2.6vw,21px);max-width:34ch;margin-inline:auto}
+.intro .faster{display:inline-block;margin-top:12px;background:var(--litmus);color:var(--paper);font-weight:900;padding:4px 12px;border-radius:8px;transform:rotate(2deg);letter-spacing:.06em}
+@keyframes pop{0%{transform:scale(.3) rotate(-12deg);opacity:0}100%{transform:scale(1) rotate(-3deg);opacity:1}}
+.result{background:var(--overlay)}
+.result .word{font-family:var(--f-display);font-weight:800;font-size:clamp(48px,11vw,104px);letter-spacing:-.04em;line-height:.95;animation:pop .35s cubic-bezier(.2,1.6,.4,1) both}
+.result.ok .word{color:var(--leaf);text-shadow:4px 4px 0 #000}
+.result.bad .word{color:var(--litmus);text-shadow:4px 4px 0 #000}
+.result .note{margin:14px auto 0;max-width:46ch;font-size:clamp(16px,2.4vw,20px);font-weight:700;background:var(--card);color:var(--ink);border-radius:14px;padding:12px 16px;border:3px solid var(--sun)}
+.result .note b{color:var(--litmus)}
+.result .tap{margin-top:12px;font-size:13px;color:var(--sun-2);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.pause{background:var(--overlay)}
+.pause h3{font-family:var(--f-display);font-size:56px;margin:0 0 16px;color:var(--sun)}

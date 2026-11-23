@@ -1,0 +1,5 @@
+/* brand mark */
+.mark{width:40px;height:30px;flex:none}
+.mark .ln{stroke:var(--fg);stroke-width:2.2}
+.mark .n0{fill:var(--litmus)}.mark .n1{fill:var(--sun-2)}.mark .n2{fill:var(--base)}
+.mark circle{stroke:var(--edge);stroke-width:2}

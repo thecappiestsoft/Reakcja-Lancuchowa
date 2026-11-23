@@ -1,0 +1,7 @@
+/* engine toggles */
+.engs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:8px}
+.eng{text-align:left;border:2.5px solid var(--edge);border-radius:14px;padding:9px 12px;background:var(--tint);font-size:13.5px;font-weight:700;color:var(--muted);line-height:1.3}
+.eng b{display:block;font-family:var(--f-display);font-size:16px;color:var(--fg);letter-spacing:-.01em}
+.eng[aria-pressed="false"]{background:transparent;opacity:.5}
+.eng[aria-pressed="false"] b{text-decoration:line-through}
+.eng[disabled]{opacity:.3;cursor:not-allowed}

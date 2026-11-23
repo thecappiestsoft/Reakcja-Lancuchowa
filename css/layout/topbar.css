@@ -1,0 +1,6 @@
+/* ---------- top bar ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:18px;letter-spacing:-.01em}
+.brand .dot{width:26px;height:26px;border-radius:50%;background:var(--litmus);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.iconbtn{border:3px solid var(--edge);background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 14px;font-weight:800;font-size:14px;box-shadow:3px 3px 0 var(--shadow)}
+.iconbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--shadow)}

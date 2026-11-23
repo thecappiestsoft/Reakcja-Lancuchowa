@@ -1,0 +1,9 @@
+/* match */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 16px 16px;margin-top:auto}
+.match .col{display:grid;gap:10px;align-content:start}
+.mbtn{border:3px solid #000;border-radius:14px;padding:12px 10px;background:var(--card);color:var(--ink);font-weight:900;font-size:clamp(14px,2.3vw,19px);box-shadow:0 4px 0 #000;min-height:52px;text-wrap:balance}
+.col.R .mbtn{background:var(--o7)}
+.mbtn.sel{outline:4px solid var(--sun);transform:translateY(-2px)}
+.mbtn.ok{box-shadow:none;transform:translateY(3px);color:#fff}
+.mbtn.ok[data-p="0"]{background:var(--litmus)}.mbtn.ok[data-p="1"]{background:var(--base)}.mbtn.ok[data-p="2"]{background:var(--leaf)}.mbtn.ok[data-p="3"]{background:var(--warn)}
+.mbtn.bad{outline:4px solid var(--litmus)}

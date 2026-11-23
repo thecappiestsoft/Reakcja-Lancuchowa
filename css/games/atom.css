@@ -1,0 +1,12 @@
+/* atom */
+.atom{flex:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:6px 16px 14px}
+.asvg{width:100%;max-height:250px}
+.asvg .ring{fill:none;stroke:rgba(255,253,244,.35);stroke-width:2;stroke-dasharray:4 4}
+.asvg .nuc{fill:var(--litmus);stroke:#000;stroke-width:3}
+.asvg .nuct{fill:#fff;font:800 15px var(--f-mono);text-anchor:middle}
+.asvg .eln{fill:var(--sun);stroke:#000;stroke-width:2}
+.shellbtns{display:grid;gap:8px;min-width:130px}
+.shellbtns button{border:3px solid #000;border-radius:12px;padding:10px 12px;font-weight:900;font-size:18px;background:var(--sun);color:var(--ink);box-shadow:0 4px 0 #000}
+.shellbtns .clr{background:var(--ink-3);color:var(--paper);font-size:14px}
+.ecount{font-family:var(--f-mono);color:var(--sun-2);font-size:14px;text-align:center}
+@media (max-width:520px){.atom{grid-template-columns:1fr}.shellbtns{grid-template-columns:repeat(3,1fr)}.ecount{grid-column:1/-1}.asvg{max-height:190px}}

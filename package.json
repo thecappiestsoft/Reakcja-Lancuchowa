@@ -1,0 +1,10 @@
+{
+  "name": "reakcja-lancuchowa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reakcja Łańcuchowa – błyskawiczne mikrogry z chemii (wersja deweloperska)",
+  "scripts": {
+    "dev": "npx --yes serve@14.2.4 -l 5173 .",
+    "build": "python3 tools/build.py"
+  }
+}

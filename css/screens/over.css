@@ -1,0 +1,11 @@
+/* over */
+.over-card{background:var(--surface);border:3px solid var(--edge);border-radius:24px;box-shadow:8px 8px 0 var(--shadow);padding:22px}
+.over-card h2{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,8vw,76px);line-height:.9;letter-spacing:-.035em;margin:0 0 6px;text-wrap:balance}
+.score-big{font-family:var(--f-mono);font-weight:700;font-size:clamp(46px,9vw,80px);color:var(--litmus);line-height:1}
+.rank{display:grid;gap:8px;margin:14px 0}
+.rank div{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;border:2.5px solid var(--edge);border-radius:14px;padding:8px 12px;font-variant-numeric:tabular-nums}
+.rank div span:last-child{margin-left:auto;font-family:var(--f-mono)}
+.review{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.review li{border-left:5px solid var(--litmus);background:var(--review-bg);border-radius:0 12px 12px 0;padding:8px 12px;font-weight:700;font-size:15px}
+.over-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px;align-items:start}
+.muted{color:var(--muted);font-weight:700}

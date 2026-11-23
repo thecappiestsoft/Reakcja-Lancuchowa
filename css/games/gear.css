@@ -1,0 +1,10 @@
+/* gear */
+.gear{display:flex;justify-content:center;margin-top:8px}
+.gear svg{height:clamp(110px,22vh,170px);width:auto;background:rgba(255,253,244,.06);border-radius:16px;padding:6px}
+.gear path,.gear circle{fill:none;stroke:var(--paper);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+.gear .liq{fill:rgba(255,61,127,.55);stroke:none}
+.gear .thin{stroke-width:2;opacity:.7}
+.gear .thick{stroke-width:10}
+
+.foot{margin-top:40px;padding-top:14px;border-top:3px solid var(--edge);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-weight:800;font-size:14px;color:var(--fg)}
+.foot .muted{font-weight:700}

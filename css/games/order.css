@@ -1,0 +1,6 @@
+/* order */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px 18px 18px;margin-top:auto}
+.tile{position:relative;border:3px solid #000;border-radius:16px;padding:18px 12px;background:var(--card);color:var(--ink);font-weight:900;font-size:clamp(16px,2.6vw,22px);box-shadow:0 5px 0 #000;min-height:72px;text-wrap:balance}
+.tile.on{background:var(--leaf);color:#fff;box-shadow:0 2px 0 #000;transform:translateY(3px)}
+.tile.on::before{content:attr(data-n);position:absolute;left:-8px;top:-10px;width:28px;height:28px;border-radius:50%;background:var(--sun);color:var(--ink);border:3px solid #000;display:grid;place-items:center;font-family:var(--f-mono);font-size:14px}
+.tile.wrong{outline:4px solid var(--litmus)}

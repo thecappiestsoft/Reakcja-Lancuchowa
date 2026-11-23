@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reakcja Łańcuchowa</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<!-- Style: kolejność ma znaczenie (kaskada) -->
+<link rel="stylesheet" href="css/base/reset.css">
+<link rel="stylesheet" href="css/base/tokens.css">
+<link rel="stylesheet" href="css/layout/topbar.css">
+<link rel="stylesheet" href="css/screens/menu.css">
+<link rel="stylesheet" href="css/layout/hud.css">
+<link rel="stylesheet" href="css/layout/stage.css">
+<link rel="stylesheet" href="css/games/quiz.css">
+<link rel="stylesheet" href="css/games/catch.css">
+<link rel="stylesheet" href="css/games/sort.css">
+<link rel="stylesheet" href="css/games/ph.css">
+<link rel="stylesheet" href="css/games/balance.css">
+<link rel="stylesheet" href="css/games/table.css">
+<link rel="stylesheet" href="css/screens/over.css">
+<link rel="stylesheet" href="css/components/switches.css">
+<link rel="stylesheet" href="css/screens/bio.css">
+<link rel="stylesheet" href="css/components/brand.css">
+<link rel="stylesheet" href="css/components/engine-toggles.css">
+<link rel="stylesheet" href="css/games/match.css">
+<link rel="stylesheet" href="css/games/order.css">
+<link rel="stylesheet" href="css/games/fill.css">
+<link rel="stylesheet" href="css/games/scale.css">
+<link rel="stylesheet" href="css/games/atom.css">
+<link rel="stylesheet" href="css/games/ions.css">
+<link rel="stylesheet" href="css/games/stop.css">
+<link rel="stylesheet" href="css/games/gear.css">
+<link rel="stylesheet" href="css/layout/footer.css">
+<!-- Motyw ustawiany przed pierwszym malowaniem, żeby nie migało -->
+<script src="js/boot/theme-boot.js"></script>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="brand"><svg class="mark" viewBox="0 0 40 30" aria-hidden="true"><path class="ln" d="M6 15 L19 8 M6 15 L19 22 M19 8 L33 4 M19 8 L33 12 M19 22 L33 18 M19 22 L33 26"/><circle class="n0" cx="6" cy="15" r="4.5"/><circle class="n1" cx="19" cy="8" r="3.6"/><circle class="n1" cx="19" cy="22" r="3.6"/><circle class="n2" cx="33" cy="4" r="2.8"/><circle class="n2" cx="33" cy="12" r="2.8"/><circle class="n2" cx="33" cy="18" r="2.8"/><circle class="n2" cx="33" cy="26" r="2.8"/></svg><span data-t="brand">Reakcja Łańcuchowa</span></div>
+    <div class="row">
+      <nav class="tabs" id="tabs" aria-label="Zakładki">
+        <button class="tab" type="button" data-go="menu" aria-current="page" data-t="tabGame">Gra</button>
+        <button class="tab" type="button" data-go="bio" data-t="tabBio">Kim był Łańcuchow?</button>
+      </nav>
+      <div class="langsw" id="langSw" role="group" aria-label="Język / Language">
+        <button type="button" data-lang="pl" aria-pressed="true">PL</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="langsw" id="themeSw" role="group" aria-label="Motyw">
+        <button type="button" data-theme-set="light" aria-pressed="true" aria-label="Tryb jasny" title="Tryb jasny"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+        <button type="button" data-theme-set="dark" aria-pressed="false" aria-label="Tryb ciemny" title="Tryb ciemny"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></button>
+      </div>
+      <button class="iconbtn" id="soundBtn" type="button" aria-pressed="true">Dźwięk: wł.</button>
+    </div>
+  </div>
+
+  <!-- ================= MENU ================= -->
+  <section id="menu">
+    <div class="hero">
+      <div>
+        <h1 data-t="heroH">Reakcja<br><span>Łańcuchowa</span></h1>
+        <p data-t="heroP">Błyskawiczne mikrogry z chemii. Kilka sekund na każdą, coraz szybciej. Złap metale, zbalansuj równanie, ustaw pH, wskaż pierwiastek. Graj sam albo w kilka osób przy jednej tablicy.</p>
+      </div>
+      <div class="formula-badge" aria-hidden="true" data-t="badge">2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O<br><b>pH</b> 7,0 · Z = 26<br>CH<sub>4</sub> + 2O<sub>2</sub></div>
+    </div>
+
+    <div class="panels">
+      <div class="panel">
+        <h2 data-t="mode">Tryb</h2>
+        <div class="chips" id="modeChips">
+          <button class="chip" type="button" data-v="solo" aria-pressed="true" data-t="solo">Solo</button>
+          <button class="chip" type="button" data-v="party" aria-pressed="false" data-t="party">Imprezowy · 2–4 graczy</button>
+        </div>
+        <p class="help" id="modeHelp">4 życia. Graj, aż skończą się kolby.</p>
+        <div class="players" id="players" hidden></div>
+        <div class="row" id="playerBtns" hidden style="margin-top:8px">
+          <button class="chip" type="button" id="addP" data-t="addP">+ gracz</button>
+          <button class="chip" type="button" id="remP" data-t="remP">− gracz</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2 data-t="level">Poziom</h2>
+        <div class="chips" id="schoolChips">
+          <button class="chip" type="button" data-v="sp" aria-pressed="true" data-t="sp">Szkoła podstawowa</button>
+          <button class="chip" type="button" data-v="lo" aria-pressed="false" data-t="lo">Liceum</button>
+          <button class="chip" type="button" data-v="tech" aria-pressed="false" data-t="tech">Technikum</button>
+        </div>
+        <h2 style="margin-top:16px" data-t="diff">Trudność</h2>
+        <div class="chips" id="diffChips">
+          <button class="chip" type="button" data-v="easy" aria-pressed="false" data-t="easy">Łatwa</button>
+          <button class="chip" type="button" data-v="mid" aria-pressed="true" data-t="mid">Średnia</button>
+          <button class="chip" type="button" data-v="hard" aria-pressed="false" data-t="hard">Trudna</button>
+        </div>
+        <p class="help" id="diffHelp"></p>
+      </div>
+      <div class="panel wide">
+        <h2 data-t="cats">Działy</h2>
+        <div class="chips" id="catChips"></div>
+        <p class="help" data-t="catsHelp">Liczba przy dziale to pula zadań dla wybranego poziomu. Zaznacz jeden dział, żeby zrobić powtórkę przed kartkówką.</p>
+      </div>
+      <div class="panel wide">
+        <h2><span data-t="engs">Mikrogry</span> <span id="engCount"></span></h2>
+        <div class="engs" id="engChips"></div>
+        <p class="help" data-t="engsHelp">Kliknij kafelek, żeby wyłączyć lub włączyć daną mikrogrę.</p>
+      </div>
+    </div>
+
+    <div class="start-row">
+      <button class="big" id="startBtn" type="button" data-t="start">Start!</button>
+      <span class="stat" id="bestLine"></span>
+    </div>
+  </section>
+
+  <!-- ================= BIO ================= -->
+  <section id="bio" hidden>
+    <div data-lang-block="pl">
+    <div class="bio-head">
+      <div>
+        <h1>Kim był Fiodor Łańcuchow?</h1>
+        <div class="life">ur. 1851, Mała Kolbówka · zm. 1919, „osiągnął stan równowagi”</div>
+      </div>
+      <figure class="portrait" style="margin:0">
+        <svg viewBox="0 0 200 230" role="img" aria-label="Rysunek: chemik z rozwichrzonymi włosami, goglami na czole, długą brodą i kolbą w ręku">
+          <rect width="200" height="230" rx="12" fill="#FFE680"/>
+          <path d="M30 230 C34 180 60 166 100 166 C140 166 166 180 170 230Z" fill="#FFFDF4" stroke="#1B1433" stroke-width="4"/>
+          <path d="M100 168 L88 230 M100 168 L112 230" stroke="#1B1433" stroke-width="3" fill="none"/>
+          <path d="M52 92 L36 70 L58 72 L48 44 L72 58 L76 28 L94 52 L106 22 L116 52 L136 30 L134 60 L158 48 L146 74 L168 74 L148 94Z" fill="#5A5175" stroke="#1B1433" stroke-width="4" stroke-linejoin="round"/>
+          <ellipse cx="100" cy="104" rx="44" ry="48" fill="#F6C9A8" stroke="#1B1433" stroke-width="4"/>
+          <rect x="58" y="67" width="84" height="8" fill="#1B1433"/>
+          <circle cx="82" cy="71" r="13" fill="#9FD6FF" stroke="#1B1433" stroke-width="4"/>
+          <circle cx="118" cy="71" r="13" fill="#9FD6FF" stroke="#1B1433" stroke-width="4"/>
+          <path d="M74 91 Q84 85 92 91 M108 91 Q116 85 126 91" stroke="#1B1433" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <circle cx="84" cy="101" r="4" fill="#1B1433"/><circle cx="116" cy="101" r="4" fill="#1B1433"/>
+          <path d="M100 104 Q93 116 102 118" stroke="#1B1433" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M58 112 C60 150 80 178 100 188 C120 178 140 150 142 112 C130 128 118 132 100 132 C82 132 70 128 58 112Z" fill="#E8E2D2" stroke="#1B1433" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M100 124 C90 116 78 118 70 127 C80 124 88 129 100 129 C112 129 120 124 130 127 C122 118 110 116 100 124Z" fill="#5A5175" stroke="#1B1433" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M150 150 V164 L136 198 H178 L164 164 V150Z" fill="#FF3D7F" stroke="#1B1433" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M146 150 H168" stroke="#1B1433" stroke-width="4"/>
+          <circle cx="157" cy="137" r="5" fill="#FFFDF4" stroke="#1B1433" stroke-width="2.5"/>
+          <circle cx="165" cy="123" r="4" fill="#FFFDF4" stroke="#1B1433" stroke-width="2.5"/>
+          <circle cx="158" cy="111" r="3" fill="#FFFDF4" stroke="#1B1433" stroke-width="2"/>
+        </svg>
+        <figcaption>portret „z pamięci” · artysta też jest zmyślony</figcaption>
+      </figure>
+    </div>
+
+    <div class="fiction"><span aria-hidden="true">⚠</span><span><b>Uwaga, żart!</b> Fiodor Łańcuchow to postać zmyślona, patron naszej gry. Wszystkie „fakty” o nim są wymyślone. Przy każdym znajdziesz jednak prawdziwą chemię, którą warto zapamiętać.</span></div>
+
+    <div class="facts">
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Urodził się podczas burzy, a jego pierwszym słowem nie było „mama”, tylko „redoks”. Położna uznała to za kichnięcie.</div><div class="real"><span class="lbl">A naprawdę</span>Redoks to skrót od <b>redukcji</b> i <b>oksydacji</b> (utleniania). Te dwa procesy zawsze zachodzą razem.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Jako dziecko ułożył układ okresowy z pierogów. Kot zjadł mu całą grupę 17 i od tamtej pory fluorowce są takie nerwowe.</div><div class="real"><span class="lbl">A naprawdę</span>Układ okresowy opublikował Dmitrij Mendelejew w 1869 r. Fluorowce są bardzo reaktywne, bo do oktetu brakuje im tylko jednego elektronu.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Reakcję łańcuchową odkrył przez przypadek. Kichnął w laboratorium, przewrócił jedną zlewkę, ta drugą, ta dwie następne… Po kwadransie leżały 64 zlewki.</div><div class="real"><span class="lbl">A naprawdę</span>W reakcji łańcuchowej produkt jednego etapu, np. wolny rodnik, uruchamia kolejne etapy. Przykład: chlorowanie metanu na świetle.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Nosił trzy zegarki naraz, bo powtarzał, że „czas półtrwania nie poczeka”.</div><div class="real"><span class="lbl">A naprawdę</span>Czas półtrwania to czas, po którym rozpada się połowa jąder danego izotopu. Dla węgla-14 to ok. 5730 lat.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Jego kot miał na imię Katalizator, bo przyspieszał każdą pracę, a sam nigdy się nie zużywał. Spał 20 godzin na dobę.</div><div class="real"><span class="lbl">A naprawdę</span>Katalizator przyspiesza reakcję, obniżając energię aktywacji, i po reakcji pozostaje niezmieniony.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Nie chodził na imprezy, bo uważał się za gaz szlachetny. „Nie wchodzę w reakcje z byle kim” – mawiał.</div><div class="real"><span class="lbl">A naprawdę</span>Gazy szlachetne mają całkowicie zapełnioną powłokę walencyjną, dlatego bardzo rzadko tworzą związki.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Oświadczył się żonie, bilansując na tablicy równanie „1 + 1 = 1 para”. Komisja naukowa uznała je za niezbilansowane, żona za romantyczne.</div><div class="real"><span class="lbl">A naprawdę</span>W poprawnym równaniu liczba atomów każdego pierwiastka po obu stronach jest taka sama. To wynika z prawa zachowania masy, które sformułowali m.in. Łomonosow i Lavoisier.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Wynalazł „suchą wodę”. Niestety nie dało się jej nalać do szklanki, więc wynalazek trafił do szuflady.</div><div class="real"><span class="lbl">A naprawdę</span>Istnieje za to suchy lód, czyli stały CO<sub>2</sub>. W temperaturze ok. −78°C przechodzi od razu w gaz (sublimuje), z pominięciem cieczy.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Na wykładach zamiast dzwonka używał fenoloftaleiny. Gdy roztwór robił się malinowy, studenci wiedzieli, że pora na przerwę.</div><div class="real"><span class="lbl">A naprawdę</span>Fenoloftaleina jest bezbarwna w kwasach i obojętnych roztworach, a w zasadach barwi się na malinowo.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legenda głosi</span>Jego ostatnie słowa brzmiały: „Kwas do wody, nie odwrotnie!”. Uczniowie wyryli je nad drzwiami pracowni.</div><div class="real"><span class="lbl">A naprawdę</span>To najważniejsza zasada BHP przy rozcieńczaniu. Woda wlana do stężonego kwasu może gwałtownie się zagotować i rozprysnąć.</div></article>
+    </div>
+
+    <section class="bio-sec">
+      <h2>Życie w datach (równie zmyślonych)</h2>
+      <ol class="timeline">
+        <li><span class="y">1851</span><span>Przychodzi na świat w Małej Kolbówce. Waży dokładnie 3,5 kg, co natychmiast przelicza na mole.</span></li>
+        <li><span class="y">1863</span><span>Pierwszy wybuch w szopie dziadka. Kontrolowany, prawie.</span></li>
+        <li><span class="y">1874</span><span>Doktorat z „Teorii ciągłego mieszania”. Promotor do dziś miesza.</span></li>
+        <li><span class="y">1889</span><span>Słynne kichnięcie i odkrycie reakcji łańcuchowej (64 zlewki).</span></li>
+        <li><span class="y">1901</span><span>Nominacja do nagrody za najczystszą probówkę w Europie. Przegrywa o jedną kroplę.</span></li>
+        <li><span class="y">1919</span><span>Przechodzi na emeryturę, „aby wreszcie osiągnąć stan równowagi”.</span></li>
+      </ol>
+    </section>
+
+    <section class="bio-sec">
+      <h2>Złote myśli Łańcuchowa</h2>
+      <div class="quotes">
+        <blockquote>„Kto nie ryzykuje, ten nie miesza.”</blockquote>
+        <blockquote>„Życie jest jak miareczkowanie: jedna kropla za dużo i wszystko robi się różowe.”</blockquote>
+        <blockquote>„Atom nie kłamie. Najwyżej się jonizuje.”</blockquote>
+        <blockquote>„Nie ma głupich pytań. Są tylko nieprzereagowane substraty.”</blockquote>
+        <blockquote>„Jeśli coś się nie udaje, dodaj katalizator. Albo kawę.”</blockquote>
+        <blockquote>„Elektron walencyjny to jak przyjaciel: lepiej się nim dzielić.”</blockquote>
+      </div>
+    </section>
+
+    <section class="bio-sec">
+      <h2>A kto naprawdę badał reakcje łańcuchowe?</h2>
+      <div class="realhero">Prawdziwy rosyjski chemik od reakcji łańcuchowych to <b>Nikołaj Siemionow</b>. W 1956 r. dostał Nagrodę Nobla z chemii za badania mechanizmu reakcji chemicznych, w tym reakcji łańcuchowych. Podzielił się nią z Brytyjczykiem <b>Cyrilem Hinshelwoodem</b>. Łańcuchow chętnie przypisałby sobie ich zasługi, ale cóż, nie istniał.</div>
+    </section>
+
+    <div class="start-row">
+      <button class="big bioPlay" type="button">Zagraj w duchu Łańcuchowa</button>
+    </div>
+    </div>
+    <div data-lang-block="en" hidden>
+    <div class="bio-head">
+      <div>
+        <h1>Who was Fyodor Chainov?</h1>
+        <div class="life">b. 1851, Little Flaskovo · d. 1919, “reached equilibrium”</div>
+      </div>
+      <figure class="portrait" style="margin:0">
+        <svg viewBox="0 0 200 230" role="img" aria-label="Drawing: a chemist with wild hair, goggles on his forehead, a long beard and a flask in his hand">
+          <rect width="200" height="230" rx="12" fill="#FFE680"/>
+          <path d="M30 230 C34 180 60 166 100 166 C140 166 166 180 170 230Z" fill="#FFFDF4" stroke="#1B1433" stroke-width="4"/>
+          <path d="M100 168 L88 230 M100 168 L112 230" stroke="#1B1433" stroke-width="3" fill="none"/>
+          <path d="M52 92 L36 70 L58 72 L48 44 L72 58 L76 28 L94 52 L106 22 L116 52 L136 30 L134 60 L158 48 L146 74 L168 74 L148 94Z" fill="#5A5175" stroke="#1B1433" stroke-width="4" stroke-linejoin="round"/>
+          <ellipse cx="100" cy="104" rx="44" ry="48" fill="#F6C9A8" stroke="#1B1433" stroke-width="4"/>
+          <rect x="58" y="67" width="84" height="8" fill="#1B1433"/>
+          <circle cx="82" cy="71" r="13" fill="#9FD6FF" stroke="#1B1433" stroke-width="4"/>
+          <circle cx="118" cy="71" r="13" fill="#9FD6FF" stroke="#1B1433" stroke-width="4"/>
+          <path d="M74 91 Q84 85 92 91 M108 91 Q116 85 126 91" stroke="#1B1433" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <circle cx="84" cy="101" r="4" fill="#1B1433"/><circle cx="116" cy="101" r="4" fill="#1B1433"/>
+          <path d="M100 104 Q93 116 102 118" stroke="#1B1433" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M58 112 C60 150 80 178 100 188 C120 178 140 150 142 112 C130 128 118 132 100 132 C82 132 70 128 58 112Z" fill="#E8E2D2" stroke="#1B1433" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M100 124 C90 116 78 118 70 127 C80 124 88 129 100 129 C112 129 120 124 130 127 C122 118 110 116 100 124Z" fill="#5A5175" stroke="#1B1433" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M150 150 V164 L136 198 H178 L164 164 V150Z" fill="#FF3D7F" stroke="#1B1433" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M146 150 H168" stroke="#1B1433" stroke-width="4"/>
+          <circle cx="157" cy="137" r="5" fill="#FFFDF4" stroke="#1B1433" stroke-width="2.5"/>
+          <circle cx="165" cy="123" r="4" fill="#FFFDF4" stroke="#1B1433" stroke-width="2.5"/>
+          <circle cx="158" cy="111" r="3" fill="#FFFDF4" stroke="#1B1433" stroke-width="2"/>
+        </svg>
+        <figcaption>portrait “from memory” · the artist is made up too</figcaption>
+      </figure>
+    </div>
+
+    <div class="fiction"><span aria-hidden="true">⚠</span><span><b>Just kidding!</b> Fyodor Chainov is a made-up character and the mascot of this game. Every “fact” about him is invented. Each one comes with some real chemistry worth remembering, though.</span></div>
+
+    <div class="facts">
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>He was born during a thunderstorm, and his first word wasn’t “mama” but “redox”. The midwife thought he had sneezed.</div><div class="real"><span class="lbl">Actually</span>Redox is short for <b>reduction</b> and <b>oxidation</b>. The two always happen together: one substance loses electrons while another gains them.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>As a boy he laid out the periodic table in dumplings. The cat ate the whole of group 17, which is why the halogens have been so jumpy ever since.</div><div class="real"><span class="lbl">Actually</span>Dmitri Mendeleev published the periodic table in 1869. Halogens are very reactive because they are just one electron short of a full outer shell.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>He discovered the chain reaction by accident. He sneezed in the lab and knocked over one beaker, which knocked over two more, which knocked over four… Fifteen minutes later, 64 beakers lay on the floor.</div><div class="real"><span class="lbl">Actually</span>In a chain reaction, the product of one step (for example a free radical) starts the next steps. A classic example is chlorinating methane in light.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>He wore three watches at once, because “half-life waits for no one”.</div><div class="real"><span class="lbl">Actually</span>Half-life is the time it takes for half the nuclei of an isotope to decay. For carbon-14 it is about 5,730 years.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>His cat was called Catalyst. It sped up every job, never got used up, and slept 20 hours a day.</div><div class="real"><span class="lbl">Actually</span>A catalyst speeds up a reaction by lowering its activation energy, and comes out of the reaction unchanged.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>He never went to parties because he considered himself a noble gas. “I don’t react with just anyone,” he used to say.</div><div class="real"><span class="lbl">Actually</span>Noble gases have a full outer electron shell, so they very rarely form compounds.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>He proposed to his wife by writing “1 + 1 = 1 couple” on the blackboard. The academy called the equation unbalanced. His wife called it romantic.</div><div class="real"><span class="lbl">Actually</span>In a balanced equation, each element has the same number of atoms on both sides. That follows from the law of conservation of mass, worked out by Lomonosov and Lavoisier, among others.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>He invented “dry water”. Sadly, nobody could pour it into a glass, so the invention went into a drawer.</div><div class="real"><span class="lbl">Actually</span>Dry ice does exist: it is solid CO<sub>2</sub>. At about −78°C it turns straight into gas (sublimes) without ever becoming a liquid.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>Instead of a school bell he used phenolphthalein. When the flask turned pink, the students knew it was break time.</div><div class="real"><span class="lbl">Actually</span>Phenolphthalein is colourless in acidic and neutral solutions and turns pink in basic ones.</div></article>
+      <article class="fact"><div class="myth"><span class="lbl">Legend has it</span>His last words were “Acid into water, never the other way round!” His students carved them above the lab door.</div><div class="real"><span class="lbl">Actually</span>This is the golden safety rule for diluting acids. Water poured into concentrated acid can boil violently and spatter.</div></article>
+    </div>
+
+    <section class="bio-sec">
+      <h2>His life in (equally made-up) dates</h2>
+      <ol class="timeline">
+        <li><span class="y">1851</span><span>Born in Little Flaskovo. Weighs exactly 3.5 kg and immediately converts it into moles.</span></li>
+        <li><span class="y">1863</span><span>First explosion in his grandfather’s shed. Controlled, more or less.</span></li>
+        <li><span class="y">1874</span><span>Doctorate on “The Theory of Continuous Stirring”. His supervisor is still stirring.</span></li>
+        <li><span class="y">1889</span><span>The famous sneeze and the discovery of the chain reaction (64 beakers).</span></li>
+        <li><span class="y">1901</span><span>Shortlisted for the Cleanest Test Tube in Europe award. Loses by a single drop.</span></li>
+        <li><span class="y">1919</span><span>Retires “to finally reach equilibrium”.</span></li>
+      </ol>
+    </section>
+
+    <section class="bio-sec">
+      <h2>Chainov’s words of wisdom</h2>
+      <div class="quotes">
+        <blockquote>“If you’re not part of the solution, you’re part of the precipitate.”</blockquote>
+        <blockquote>“Life is like a titration: one drop too many and everything turns pink.”</blockquote>
+        <blockquote>“Never trust an atom. They make up everything.”</blockquote>
+        <blockquote>“There are no stupid questions, only unreacted reactants.”</blockquote>
+        <blockquote>“When in doubt, add a catalyst. Or coffee.”</blockquote>
+        <blockquote>“A valence electron is like a friend: it’s better shared.”</blockquote>
+      </div>
+    </section>
+
+    <section class="bio-sec">
+      <h2>So who really studied chain reactions?</h2>
+      <div class="realhero">The real Russian chemist behind chain reactions was <b>Nikolay Semyonov</b>. In 1956 he received the Nobel Prize in Chemistry for research into the mechanism of chemical reactions, including chain reactions. He shared it with the British chemist <b>Cyril Hinshelwood</b>. Chainov would happily take credit for their work, but, well, he never existed.</div>
+    </section>
+
+    <div class="start-row">
+      <button class="big bioPlay" type="button">Play like Chainov</button>
+    </div>
+    </div>
+  </section>
+
+  <!-- ================= GAME ================= -->
+  <section id="game" hidden>
+    <div class="hud">
+      <div class="hud-left" id="hudLeft"></div>
+      <div class="row">
+        <button class="iconbtn" id="pauseBtn" type="button" data-t="pause">Pauza</button>
+      </div>
+    </div>
+    <div class="stage" id="stage">
+      <div class="play" id="play"></div>
+      <div class="fuse" id="fuse"><i id="burn"></i></div>
+    </div>
+  </section>
+
+  <!-- ================= OVER ================= -->
+  <section id="over" hidden>
+    <div class="over-card" id="overCard"></div>
+  </section>
+
+  <footer class="foot">
+    <span>© 2026 CappySoft.pl</span>
+  </footer>
+</div>
+
+<!-- Skrypty: zwykłe (nie-modułowe), ładowane po kolei – działają też z file:// -->
+<script src="js/data/globals.js"></script>
+<script src="js/data/data-pl.js"></script>
+<script src="js/data/data-en.js"></script>
+<script src="js/core/utils.js"></script>
+<script src="js/core/sound.js"></script>
+<script src="js/core/i18n.js"></script>
+<script src="js/ui/menu.js"></script>
+<script src="js/games/_shared.js"></script>
+<script src="js/games/engines/quiz.js"></script>
+<script src="js/games/engines/tf.js"></script>
+<script src="js/games/engines/catch.js"></script>
+<script src="js/games/engines/sort.js"></script>
+<script src="js/games/engines/ph.js"></script>
+<script src="js/games/engines/bal.js"></script>
+<script src="js/games/engines/table.js"></script>
+<script src="js/games/engines/count.js"></script>
+<script src="js/games/engines/mass.js"></script>
+<script src="js/games/engines/match.js"></script>
+<script src="js/games/engines/order.js"></script>
+<script src="js/games/engines/fill.js"></script>
+<script src="js/games/engines/scale.js"></script>
+<script src="js/games/engines/atom.js"></script>
+<script src="js/games/engines/ions.js"></script>
+<script src="js/games/engines/stop.js"></script>
+<script src="js/games/engines/gear.js"></script>
+<script src="js/games/helpers.js"></script>
+<script src="js/core/game-loop.js"></script>
+<script src="js/ui/pause.js"></script>
+<script src="js/ui/theme.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

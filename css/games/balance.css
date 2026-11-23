@@ -1,0 +1,13 @@
+/* balance */
+.eq{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 6px;padding:18px 12px 6px;margin-top:auto}
+.sp{display:inline-flex;align-items:center;gap:4px;background:var(--card);color:var(--ink);border:3px solid #000;border-radius:14px;padding:6px 10px 6px 6px;font-weight:900;font-size:clamp(17px,3vw,25px)}
+.coef{display:grid;grid-template-rows:auto auto;justify-items:center}
+.coef .c{min-width:40px;border:3px solid #000;border-radius:10px;background:var(--sun);font-family:var(--f-mono);font-weight:700;font-size:clamp(18px,3vw,24px);padding:2px 6px}
+.coef .c.one{background:#FFF1B3;color:#9a8a4a}
+.coef .m{font-size:12px;border:none;background:none;color:var(--stage-muted);font-weight:900;padding:0 6px;line-height:1.2}
+.op{font-family:var(--f-display);font-weight:800;font-size:26px;color:var(--sun)}
+.tally{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 14px 16px;margin-bottom:auto}
+.tal{font-family:var(--f-mono);font-size:14px;border-radius:10px;padding:5px 10px;background:var(--ink-3);border:2px solid transparent;font-variant-numeric:tabular-nums}
+.tal.ok{border-color:var(--leaf);color:#9FF0CB}
+.tal b{color:var(--sun)}
+.hint{text-align:center;font-size:13px;color:var(--sun-2);font-weight:700;padding:0 14px}
